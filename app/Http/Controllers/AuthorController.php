@@ -68,6 +68,7 @@ class AuthorController extends Controller
      */
     public function update(AuthorRequest $request, Author $author): JsonResponse
     {
+        $author->update($request->only(['name', 'dob', 'description']));
         return response()->json([
             'message' => 'The Author\'s information has been updated',
             'author' => $author
