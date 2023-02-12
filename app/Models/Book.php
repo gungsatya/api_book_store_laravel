@@ -15,6 +15,26 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Book newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Book newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Book query()
+ * @property int $id
+ * @property int|null $author_id
+ * @property string $title
+ * @property string|null $description
+ * @property float $price
+ * @property \Illuminate\Support\Carbon|null $release_date
+ * @property string|null $image_path
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereAuthorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereImagePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereReleaseDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Book whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
  * @mixin \Eloquent
  */
 class Book extends Model
