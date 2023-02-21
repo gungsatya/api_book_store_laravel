@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('authors')
     ->as('authors.')
-    ->middleware(['auth'])
+//    ->middleware(['auth'])
     ->group(function () {
         Route::get('/', [AuthorController::class, 'index'])
             ->name('index');
@@ -17,10 +17,10 @@ Route::prefix('authors')
             ->whereNumber(['author'])
             ->name('show');
 
-        Route::patch('/{author}', [AuthorController::class, 'update'])
+        Route::put('/{author}', [AuthorController::class, 'update'])
             ->whereNumber(['author'])
             ->name('update');
-        
+
         Route::delete('/{author}', [AuthorController::class, 'destroy'])
             ->whereNumber(['author'])
             ->name('destroy');

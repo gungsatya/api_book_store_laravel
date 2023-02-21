@@ -2,92 +2,93 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AuthorRequest;
+use App\Http\Requests\CollectionRequest;
 use App\Http\Resources\AuthorCollection;
+use App\Http\Resources\AuthorResource;
 use App\Models\Author;
-use Illuminate\Http\JsonResponse;
+use App\Repositories\AuthorRepository;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Throwable;
 
 
 /**
  * AuthorController
- * @author satya.wibawa
+ * @author Satya Wibawa <i.g.b.n.satyawibawa@gmail.com>
  */
 class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
-     * @return JsonResponse
+     * @param CollectionRequest $request
+     * @return AuthorCollection
      */
-    public function index(Request $request): JsonResponse
+    public function index(CollectionRequest $request): AuthorCollection
     {
-        $authors = Author::search($request->input('keyword', ''))
-            ->jsonPaginate();
+        $authors = Author::search($request->q)
+            ->paginate($this->perPageSize($request->pageSize));
 
-        return response()->json($authors, ResponseAlias::HTTP_OK);
+        return new AuthorCollection($authors);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param AuthorRequest $request
-     * @return JsonResponse
+     * @param Request $request
+     * @param AuthorRepository $repository
+     * @return AuthorResource
+     * @throws Throwable
      */
-    public function store(AuthorRequest $request): JsonResponse
+    public function store(Request $request, AuthorRepository $repository): AuthorResource
     {
-        $author = Author::create($request->only(['name', 'dob', 'description',]));
+        $created = $repository->create($request->only(['name', 'dob', 'description',]));
 
-        return response()->json([
-            'message' => 'The Author\'s information has been created',
-            'author' => $author
-        ], ResponseAlias::HTTP_CREATED);
+        return new AuthorResource($created, "Author has been saved.");
     }
 
     /**
      * Display the specified resource.
      *
      * @param Author $author
-     * @return JsonResponse
+     * @return AuthorResource
      */
-    public function show(Author $author): JsonResponse
+    public function show(Author $author): AuthorResource
     {
-        return response()->json([
-            'author' => $author
-        ], ResponseAlias::HTTP_OK);
+        return new AuthorResource($author);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param AuthorRequest $request
+     * @param Request $request
      * @param Author $author
-     * @return JsonResponse
+     * @param AuthorRepository $repository
+     * @return AuthorResource
+     * @throws Throwable
      */
-    public function update(AuthorRequest $request, Author $author): JsonResponse
+    public function update(Request $request, Author $author, AuthorRepository $repository): AuthorResource
     {
-        $author->update($request->only(['name', 'dob', 'description']));
-        return response()->json([
-            'message' => 'The Author\'s information has been updated',
-            'author' => $author
-        ], ResponseAlias::HTTP_ACCEPTED);
+        $repository->update($author, $request->only([
+            'name',
+            'dob',
+            'description',
+        ]));
+
+        return new AuthorResource($author, "Author has been updated");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Author $author
-     * @return JsonResponse
+     * @param AuthorRepository $repository
+     * @return AuthorResource
+     * @throws Throwable
      */
-    public function destroy(Author $author): JsonResponse
+    public function destroy(Author $author, AuthorRepository $repository): AuthorResource
     {
-        $author->delete();
+        $repository->forceDelete($author);
 
-        return response()->json([
-            'message' => 'The Author\'s information has been deleted',
-            'author' => $author
-        ], ResponseAlias::HTTP_ACCEPTED);
+        return new AuthorResource($author, "Author has been deleted");
     }
 }

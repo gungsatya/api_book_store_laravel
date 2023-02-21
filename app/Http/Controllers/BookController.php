@@ -2,83 +2,107 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CollectionRequest;
+use App\Http\Resources\BookCollection;
+use App\Http\Resources\BookResource;
+use App\Models\Book;
+use App\Repositories\BookRepository;
 use Illuminate\Http\Request;
+use Throwable;
 
+/**
+ * BookController
+ * @author Satya Wibawa <i.g.b.n.satyawibawa@gmail.com>
+ */
 class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param CollectionRequest $request
+     * @return BookCollection
      */
-    public function index()
+    public function index(CollectionRequest $request): BookCollection
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $books = Book::search($request->q)
+            ->paginate($this->perPageSize($request->pageSize));
+        return new BookCollection($books);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param BookRepository $repository
+     * @return BookResource
+     * @throws Throwable
      */
-    public function store(Request $request)
+    public function store(Request $request, BookRepository $repository): BookResource
     {
-        //
+        $created = $repository->create($request->only([
+            'author_id',
+            'title',
+            'description',
+            'price',
+            'release_date',
+            'image_path',
+            'tag_ids',
+        ]));
+
+        $created->load(['author', 'tags']);
+
+        return new BookResource($created, "Book has been created");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Book $book
+     * @return BookResource
      */
-    public function show($id)
+    public function show(Book $book): BookResource
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $book->load(['author', 'tags']);
+        return new BookResource($book);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param BookRepository $repository
+     * @param Book $book
+     * @return BookResource
+     * @throws Throwable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, BookRepository $repository, Book $book): BookResource
     {
-        //
+        $repository->update($book, $request->only([
+            'author_id',
+            'title',
+            'description',
+            'price',
+            'release_date',
+            'image_path',
+            'tag_ids',
+        ]));
+        $book->load(['author', 'tags']);
+        
+        return new BookResource($book, "Book has been updated");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param BookRepository $repository
+     * @param Book $book
+     * @return BookResource
+     * @throws Throwable
      */
-    public function destroy($id)
+    public function destroy(BookRepository $repository, Book $book): BookResource
     {
-        //
+        $repository->forceDelete($book);
+
+        return new BookResource($book, "Book has been deleted");
     }
 }
