@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Validator;
 use Throwable;
 
 /**
@@ -28,7 +29,7 @@ class TagController extends Controller
         $keyword = $request->input('q', '');
         $tags = Tag::query()
             ->where('name', 'like', "%$keyword%")
-            ->paginate($this->perPageSize($request->pageSize));
+            ->paginate($request->input('pageSize', 10));
 
         return new TagCollection($tags);
     }
@@ -43,7 +44,20 @@ class TagController extends Controller
      */
     public function store(Request $request, TagRepository $repository): TagResource
     {
-        $created = $repository->create($request->only('name'));
+        $payload = $request->only('name');
+
+        $validator = Validator::make(
+            $payload,
+            [
+                'name' => 'required|string'
+            ],
+            [
+                'name' => "tag's name"
+            ]
+        );
+        $validator->validate();
+
+        $created = $repository->create($payload);
 
         return new TagResource($created, "Tag has been created.");
     }

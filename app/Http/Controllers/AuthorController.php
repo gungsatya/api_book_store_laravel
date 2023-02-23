@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthorRequest;
 use App\Http\Requests\CollectionRequest;
 use App\Http\Resources\AuthorCollection;
 use App\Http\Resources\AuthorResource;
 use App\Models\Author;
 use App\Repositories\AuthorRepository;
-use Illuminate\Http\Request;
 use Throwable;
 
 
@@ -26,7 +26,9 @@ class AuthorController extends Controller
     public function index(CollectionRequest $request): AuthorCollection
     {
         $authors = Author::search($request->q)
-            ->paginate($this->perPageSize($request->pageSize));
+            ->paginate(
+                $request->input('pageSize', 10)
+            );
 
         return new AuthorCollection($authors);
     }
@@ -34,14 +36,25 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param AuthorRequest $request
      * @param AuthorRepository $repository
      * @return AuthorResource
      * @throws Throwable
      */
-    public function store(Request $request, AuthorRepository $repository): AuthorResource
+    public function store(
+        AuthorRequest    $request,
+        AuthorRepository $repository
+    ): AuthorResource
     {
-        $created = $repository->create($request->only(['name', 'dob', 'description',]));
+        $created = $repository->create(
+            $request->only(
+                [
+                    'name',
+                    'dob',
+                    'description',
+                ]
+            )
+        );
 
         return new AuthorResource($created, "Author has been saved.");
     }
@@ -52,7 +65,9 @@ class AuthorController extends Controller
      * @param Author $author
      * @return AuthorResource
      */
-    public function show(Author $author): AuthorResource
+    public function show(
+        Author $author
+    ): AuthorResource
     {
         return new AuthorResource($author);
     }
@@ -60,19 +75,28 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param AuthorRequest $request
      * @param Author $author
      * @param AuthorRepository $repository
      * @return AuthorResource
      * @throws Throwable
      */
-    public function update(Request $request, Author $author, AuthorRepository $repository): AuthorResource
+    public function update(
+        AuthorRequest    $request,
+        Author           $author,
+        AuthorRepository $repository
+    ): AuthorResource
     {
-        $repository->update($author, $request->only([
-            'name',
-            'dob',
-            'description',
-        ]));
+        $repository->update(
+            $author,
+            $request->only(
+                [
+                    'name',
+                    'dob',
+                    'description',
+                ]
+            )
+        );
 
         return new AuthorResource($author, "Author has been updated");
     }
@@ -85,7 +109,10 @@ class AuthorController extends Controller
      * @return AuthorResource
      * @throws Throwable
      */
-    public function destroy(Author $author, AuthorRepository $repository): AuthorResource
+    public function destroy(
+        Author           $author,
+        AuthorRepository $repository
+    ): AuthorResource
     {
         $repository->forceDelete($author);
 

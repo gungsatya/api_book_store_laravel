@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Http\Requests\CollectionRequest;
 use App\Http\Resources\BookCollection;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Repositories\BookRepository;
-use Illuminate\Http\Request;
 use Throwable;
 
 /**
@@ -25,31 +25,53 @@ class BookController extends Controller
     public function index(CollectionRequest $request): BookCollection
     {
         $books = Book::search($request->q)
-            ->paginate($this->perPageSize($request->pageSize));
+            ->paginate(
+                $request->input('pageSize', 10)
+            );
+
         return new BookCollection($books);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param BookRequest $request
      * @param BookRepository $repository
      * @return BookResource
      * @throws Throwable
      */
-    public function store(Request $request, BookRepository $repository): BookResource
+    public function store(
+        BookRequest    $request,
+        BookRepository $repository
+    ): BookResource
     {
-        $created = $repository->create($request->only([
-            'author_id',
-            'title',
-            'description',
-            'price',
-            'release_date',
-            'image_path',
-            'tag_ids',
-        ]));
+        $payload = $request->only(
+            [
+                'author_id',
+                'title',
+                'description',
+                'price',
+                'release_date',
+                'tag_ids',
+            ]
+        );
 
-        $created->load(['author', 'tags']);
+        if ($request->hasFile('cover_image')) {
+            $imageName = time() . '.' . $request->cover_image->extension();
+            $request
+                ->cover_image
+                ->move(public_path('cover_images'), $imageName);
+
+            $payload['image_path'] = $imageName;
+        }
+
+        $created = $repository->create($payload);
+        $created->load(
+            [
+                'author',
+                'tags'
+            ]
+        );
 
         return new BookResource($created, "Book has been created");
     }
@@ -62,32 +84,60 @@ class BookController extends Controller
      */
     public function show(Book $book): BookResource
     {
-        $book->load(['author', 'tags']);
+        $book->load(
+            [
+                'author',
+                'tags'
+            ]
+        );
+
         return new BookResource($book);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param BookRequest $request
      * @param BookRepository $repository
      * @param Book $book
      * @return BookResource
      * @throws Throwable
      */
-    public function update(Request $request, BookRepository $repository, Book $book): BookResource
+    public function update(
+        BookRequest    $request,
+        BookRepository $repository,
+        Book           $book
+    ): BookResource
     {
-        $repository->update($book, $request->only([
-            'author_id',
-            'title',
-            'description',
-            'price',
-            'release_date',
-            'image_path',
-            'tag_ids',
-        ]));
-        $book->load(['author', 'tags']);
-        
+        $payload = $request->only(
+            [
+                'author_id',
+                'title',
+                'description',
+                'price',
+                'release_date',
+                'tag_ids',
+            ]
+        );
+
+        if ($request->hasFile('cover_image')) {
+            $imageName = time() . '.' . $request->cover_image->extension();
+            $request
+                ->cover_image
+                ->move(public_path('cover_images'), $imageName);
+
+            $payload['image_path'] = $imageName;
+        }
+
+        $repository->update($book, $payload);
+
+        $book->load(
+            [
+                'author',
+                'tags'
+            ]
+        );
+
         return new BookResource($book, "Book has been updated");
     }
 
@@ -99,7 +149,10 @@ class BookController extends Controller
      * @return BookResource
      * @throws Throwable
      */
-    public function destroy(BookRepository $repository, Book $book): BookResource
+    public function destroy(
+        BookRepository $repository,
+        Book           $book
+    ): BookResource
     {
         $repository->forceDelete($book);
 

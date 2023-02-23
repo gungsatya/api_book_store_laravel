@@ -50,12 +50,12 @@ class BookRepository extends BaseRepository
     {
         $updated = DB::transaction(function () use ($model, $attributes) {
             $updated = $model->update([
-                'author_id' => data_get($attributes, 'author_id', $model->author_id),
-                'title' => data_get($attributes, 'title', $model->title),
-                'description' => data_get($attributes, 'description', $model->description),
-                'price' => data_get($attributes, 'price', $model->price),
-                'release_date' => data_get($attributes, 'release_date', $model->release_date),
-                'image_path' => data_get($attributes, 'image_path', $model->image_path),
+                'author_id' => data_get($attributes, 'author_id'),
+                'title' => data_get($attributes, 'title'),
+                'description' => data_get($attributes, 'description'),
+                'price' => data_get($attributes, 'price'),
+                'release_date' => data_get($attributes, 'release_date'),
+                'image_path' => data_get($attributes, 'image_path'),
             ]);
 
             if (array_key_exists('tag_ids', $attributes)) {

@@ -29,10 +29,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function perPageSize($size): int
-    {
-        $allowedPageSize = [10, 25, 50, 100];
-        return in_array($size, $allowedPageSize) ? $size : 10;
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AllowedPageSizeRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -10,7 +11,13 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class CollectionRequest extends FormRequest
 {
-
+    public function attributes(): array
+    {
+        return [
+            'pageSize' => 'page size',
+            'q' => 'keyword'
+        ];
+    }
 
     /**
      * Determine if the user is authorized to make this request.
@@ -30,8 +37,15 @@ class CollectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'pageSize' => 'nullable|numeric',
-            'q' => 'nullable|string'
+            'pageSize' => [
+                'nullable',
+                'numeric',
+                new AllowedPageSizeRule(),
+            ],
+            'q' => [
+                'nullable',
+                'string'
+            ]
         ];
     }
 }
