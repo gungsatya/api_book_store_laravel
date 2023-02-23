@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookCollectionRequest;
 use App\Http\Requests\BookRequest;
 use App\Http\Requests\CollectionRequest;
 use App\Http\Resources\BookCollection;
@@ -22,12 +23,29 @@ class BookController extends Controller
      * @param CollectionRequest $request
      * @return BookCollection
      */
-    public function index(CollectionRequest $request): BookCollection
+    public function index(BookCollectionRequest $request): BookCollection
     {
-        $books = Book::search($request->q)
-            ->paginate(
-                $request->input('pageSize', 10)
-            );
+        $query = Book::query();
+
+        if ($request->has('q')) {
+            $query = $query->search($request->q);
+        }
+
+        if ($request->has('tag_ids')) {
+            $tag_ids = explode(',', $request->tag_ids);
+
+            foreach ($tag_ids as $key => $tag_id) {
+                $tag_ids[$key] = intval($tag_id);
+            }
+
+            $query = $query->whereHas('tags', function ($query) use ($tag_ids) {
+                $query->whereIn('id', $tag_ids);
+            });
+        }
+
+        $books = $query->with(['tags'])->paginate(
+            $request->input('pageSize', 10)
+        );
 
         return new BookCollection($books);
     }

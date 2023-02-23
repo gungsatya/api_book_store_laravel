@@ -49,7 +49,10 @@ class TagController extends Controller
         $validator = Validator::make(
             $payload,
             [
-                'name' => 'required|string'
+                'name' => [
+                    'required',
+                    'string'
+                ]
             ],
             [
                 'name' => "tag's name"

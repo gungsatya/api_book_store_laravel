@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Book;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Book>
+ * @extends Factory<Book>
  */
 class BookFactory extends Factory
 {
@@ -17,11 +18,10 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'title'=> fake()->sentence(2),
+            'title' => fake()->sentence(2),
             'description' => fake()->paragraph,
             'price' => fake()->biasedNumberBetween(10000, 100000),
             'release_date' => fake()->date,
-            'image_path' => 'https://via.placeholder.com/300',
         ];
     }
 }
