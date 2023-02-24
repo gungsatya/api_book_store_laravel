@@ -40,9 +40,9 @@ class AuthorRepository extends BaseRepository
     {
         $updated = DB::transaction(function () use ($model, $attributes) {
             return $model->update([
-                'name' => data_get($attributes, 'name', $model->name),
-                'dob' => data_get($attributes, 'name', $model->dob),
-                'description' => data_get($attributes, 'description', $model->description),
+                'name' => data_get($attributes, 'name'),
+                'dob' => data_get($attributes, 'dob'),
+                'description' => data_get($attributes, 'description'),
             ]);
         });
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\AllowedPageSizeRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -39,8 +38,8 @@ class CollectionRequest extends FormRequest
         return [
             'pageSize' => [
                 'nullable',
-                'numeric',
-                new AllowedPageSizeRule(),
+                'integer',
+                'in:10,25,50,100'
             ],
             'q' => [
                 'nullable',
