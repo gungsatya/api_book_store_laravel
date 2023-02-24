@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\AllowedPageSizeRule;
 use App\Rules\TagIdsSearchRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property-read ?string $q
+ * @property-read ?int $pageSize
+ * @property-read ?string $tag_ids;
+ */
 class BookCollectionRequest extends FormRequest
 {
 
@@ -23,7 +27,7 @@ class BookCollectionRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -33,13 +37,13 @@ class BookCollectionRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'pageSize' => [
                 'nullable',
-                'numeric',
-                new AllowedPageSizeRule(),
+                'integer',
+                'in:10,25,50,100'
             ],
             'q' => [
                 'nullable',

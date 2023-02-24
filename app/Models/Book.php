@@ -42,6 +42,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Book whereReleaseDate($value)
  * @method static Builder|Book whereTitle($value)
  * @method static Builder|Book whereUpdatedAt($value)
+ * @method static Builder|Book inTag(?string $tag_ids)
  * @mixin Eloquent
  */
 class Book extends Model
@@ -77,6 +78,30 @@ class Book extends Model
                 'like',
                 "%{$keyword}%"
             );
+        }
+
+        return $query;
+    }
+
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param Builder $query
+     * @param string|null $tag_ids
+     * @return Builder
+     */
+    public function scopeInTag(Builder $query, ?string $tag_ids): Builder
+    {
+        if ($tag_ids != null && $tag_ids != '') {
+            $tag_ids = explode(',', $tag_ids);
+
+            foreach ($tag_ids as $key => $tag_id) {
+                $tag_ids[$key] = intval($tag_id);
+            }
+
+            $query = $query->whereHas('tags', function ($query) use ($tag_ids) {
+                $query->whereIn('id', $tag_ids);
+            });
         }
 
         return $query;

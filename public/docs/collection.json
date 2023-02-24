@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/api_book_store_laravel.test"
+            "value": "http:\/\/localhost:8000"
         }
     ],
     "info": {
         "name": "Book Store API Documentation",
-        "_postman_id": "64df4f5d-8a7b-491d-a9f2-14111eda929c",
+        "_postman_id": "b2826e43-0633-486a-b1f0-8c3334a2fefa",
         "description": "This API for educational purpose with study case book store. Created by Satya Wibawa.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -152,7 +152,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"author\":{\"id\":4,\"name\":\"Micah Bernier\",\"dob\":\"1992-03-23\",\"description\":\"Nobis excepturi quasi vel aut est iusto est ut. Sit autem minus ratione hic nam.\",\"created_at\":\"2023-02-24T03:39:52.000000Z\",\"updated_at\":\"2023-02-24T03:39:52.000000Z\"},\"message\":\"Success to get author data\"}",
+                            "body": "{\"author\":{\"id\":20,\"name\":\"Celestino Larson\",\"dob\":\"2008-01-22\",\"description\":\"Et sit ratione omnis excepturi cumque laborum vel. Laborum numquam consectetur asperiores sit. Ipsa qui odio quo unde porro quaerat. Dolor enim voluptatem dolore quis atque et.\",\"created_at\":\"2023-02-24T06:10:16.000000Z\",\"updated_at\":\"2023-02-24T06:10:16.000000Z\"},\"message\":\"Success to get author data\"}",
                             "name": ""
                         }
                     ]
@@ -249,17 +249,42 @@
             ]
         },
         {
-            "name": "Endpoints",
-            "description": "",
+            "name": "Book Management",
+            "description": "\nAPI collection to manage books data.",
             "item": [
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "Book Collections",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/v1\/books",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/books"
+                            "query": [
+                                {
+                                    "key": "tag_ids",
+                                    "value": "1%2C2",
+                                    "description": "IDs of tag in search.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "q",
+                                    "value": "Harry+Potter",
+                                    "description": "Searching keyword of the collection.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "10",
+                                    "description": "Count of items per page. Allowed size 10, 25, 50, 100. Default 10.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page index to view.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/books?tag_ids=1%2C2&q=Harry+Potter&pageSize=10&page=1"
                         },
                         "method": "GET",
                         "header": [
@@ -274,45 +299,24 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"pageSize\":388.432,\"q\":\"aspernatur\",\"tag_ids\":\"excepturi\"}"
+                            "raw": "{\"pageSize\":10,\"q\":\"Harry Potter\",\"tag_ids\":\"1,2\"}"
                         },
-                        "description": "",
+                        "description": "Get book list",
                         "auth": {
                             "type": "noauth"
                         }
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "58"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 422,
-                            "body": "{\"message\":\"The page size value is not allowed. (Allowed: [10, 25, 50, 100])\",\"errors\":{\"pageSize\":[\"The page size value is not allowed. (Allowed: [10, 25, 50, 100])\"]}}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     \"books\": [\n         {\n             \"id\": 13,\n             \"title\": \"Harry Potter\",\n             \"description\": \"This harry potter description\",\n             \"price\": 150000,\n             \"release_date\": \"2023-12-23T00:00:00.000000Z\",\n             \"image_path\": null,\n             \"tags\": [\n                 {\n                     \"id\": 1,\n                     \"name\": \"Dictionary\"\n                 },\n                 {\n                     \"id\": 2,\n                     \"name\": \"Novel\"\n                 }\n             ],\n             \"created_at\": \"2023-02-24T05:28:13.000000Z\",\n             \"updated_at\": \"2023-02-24T05:28:13.000000Z\"\n         }\n     ],\n     \"links\": {\n         \"first\": \"http:\/\/127.0.0.1:8000\/api\/v1\/books?page=1\",\n         \"last\": \"http:\/\/127.0.0.1:8000\/api\/v1\/books?page=1\",\n         \"prev\": null,\n         \"next\": null\n     },\n     \"meta\": {\n         \"current_page\": 1,\n         \"from\": 1,\n         \"last_page\": 1,\n         \"links\": [\n             {\n                 \"url\": null,\n                 \"label\": \"&laquo; Previous\",\n                 \"active\": false\n             },\n             {\n                 \"url\": \"http:\/\/127.0.0.1:8000\/api\/v1\/books?page=1\",\n                 \"label\": \"1\",\n                 \"active\": true\n             },\n             {\n                 \"url\": null,\n                 \"label\": \"Next &raquo;\",\n                 \"active\": false\n             }\n         ],\n         \"path\": \"http:\/\/127.0.0.1:8000\/api\/v1\/books\",\n         \"per_page\": 10,\n         \"to\": 1,\n         \"total\": 1\n         },\n     \"message\": \"Success to get book collection\"\n}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "Store a newly created resource in storage.",
+                    "name": "Store new book data",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -336,37 +340,37 @@
                             "formdata": [
                                 {
                                     "key": "author_id",
-                                    "value": 13793776.5365601,
+                                    "value": 1,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Book's Author."
                                 },
                                 {
                                     "key": "title",
-                                    "value": "et",
+                                    "value": "Harry Potter",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Book's title."
                                 },
                                 {
                                     "key": "description",
-                                    "value": "Est tempore aut voluptatem deleniti.",
+                                    "value": "This harry potter description",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Description of the book."
                                 },
                                 {
                                     "key": "price",
-                                    "value": 71.547,
+                                    "value": 150000,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Book's price."
                                 },
                                 {
                                     "key": "release_date",
-                                    "value": "2023-02-24",
+                                    "value": "1960-12-23",
                                     "type": "text",
-                                    "description": "Must be a valid date. Must be a valid date in the format <code>Y-m-d<\/code>."
+                                    "description": "Book's released date with format Y-m-d."
                                 },
                                 {
                                     "key": "tag_ids[0]",
-                                    "value": 73.3,
+                                    "value": 11,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -377,15 +381,22 @@
                                 }
                             ]
                         },
-                        "description": "",
+                        "description": "Store a newly created book data in database.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n     {\n         \"book\": {\n             \"id\": 13,\n             \"title\": \"Harry Potter\",\n             \"description\": \"This harry potter description\",\n             \"price\": 150000,\n             \"release_date\": \"2023-12-23T00:00:00.000000Z\",\n             \"image_path\": null,\n             \"author\": {\n                 \"id\": 1,\n                 \"name\": \"Dr. Verlie Waelchi V\",\n                 \"dob\": \"1984-01-07\",\n                 \"description\": \"Quas et sed sit est expedita dolores. Voluptatem et iste et aspernatur est dolore in. Iure nesciunt voluptate quia voluptatem. Excepturi soluta qui rerum dicta et dolorem.\",\n                 \"created_at\": \"2023-02-24T05:27:46.000000Z\",\n                 \"updated_at\": \"2023-02-24T05:27:46.000000Z\"\n             },\n             \"tags\": [\n                 {\n                     \"id\": 1,\n                     \"name\": \"Dictionary\"\n                 },\n                 {\n                     \"id\": 2,\n                     \"name\": \"Novel\"\n                 }\n             ],\n             \"created_at\": \"2023-02-24T05:28:13.000000Z\",\n             \"updated_at\": \"2023-02-24T05:28:13.000000Z\"\n         },\n         \"message\": \"Book has been created\"\n         }\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "Display the specified resource.",
+                    "name": "Show book data",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -396,8 +407,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "6",
-                                    "description": "The ID of the book."
+                                    "value": "1",
+                                    "description": "Book ID."
                                 }
                             ]
                         },
@@ -413,43 +424,22 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
+                        "description": "Display detail data of the author",
                         "auth": {
                             "type": "noauth"
                         }
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "57"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 404,
-                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\Book] 6\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",\n    \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",\n    \"line\": 391,\n    \"trace\": [\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Exceptions\\\\Handler.php\",\n            \"line\": 367,\n            \"function\": \"prepareException\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\nunomaduro\\\\collision\\\\src\\\\Adapters\\\\Laravel\\\\ExceptionHandler.php\",\n            \"line\": 54,\n            \"function\": \"render\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Pipeline.php\",\n            \"line\": 51,\n            \"function\": \"render\",\n            \"class\": \"NunoMaduro\\\\Collision\\\\Adapters\\\\Laravel\\\\ExceptionHandler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 185,\n            \"function\": \"handleException\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 126,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 102,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 54,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\sanctum\\\\src\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 33,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\{closure}\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\sanctum\\\\src\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 34,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 799,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 776,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 740,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 729,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 190,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Http\\\\Middleware\\\\HandleCors.php\",\n            \"line\": 62,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Http\\\\Middleware\\\\TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 165,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 134,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 92,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 209,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 166,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 95,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 124,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 71,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 49,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 51,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 41,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 37,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 661,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 183,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 312,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 153,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 1022,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 314,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 168,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 102,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 155,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\Projects\\\\book-store\\\\api_book_store_laravel\\\\artisan\",\n            \"line\": 37,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"book\":{\"id\":27,\"title\":\"Et quas.\",\"description\":\"Rerum esse similique eos minus quibusdam. Quo autem pariatur autem ipsam. Itaque et atque necessitatibus officia rerum magnam rem. Quod illo debitis est repellendus sed.\",\"price\":57807,\"release_date\":\"2016-06-06T00:00:00.000000Z\",\"image_path\":null,\"created_at\":\"2023-02-24T06:10:16.000000Z\",\"updated_at\":\"2023-02-24T06:10:16.000000Z\"},\"message\":\"Success to get book data\"}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "Update book data",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -460,8 +450,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
-                                    "description": "The ID of the book."
+                                    "value": "13",
+                                    "description": "Book ID."
                                 }
                             ]
                         },
@@ -481,37 +471,37 @@
                             "formdata": [
                                 {
                                     "key": "author_id",
-                                    "value": 20.271950904,
+                                    "value": 1,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Book's Author."
                                 },
                                 {
                                     "key": "title",
-                                    "value": "nobis",
+                                    "value": "Harry Potter",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Book's title."
                                 },
                                 {
                                     "key": "description",
-                                    "value": "Debitis laborum sed minus doloremque iure consequuntur non.",
+                                    "value": "This harry potter description",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Description of the book."
                                 },
                                 {
                                     "key": "price",
-                                    "value": 501,
+                                    "value": 150000,
                                     "type": "text",
-                                    "description": ""
+                                    "description": "Book's price."
                                 },
                                 {
                                     "key": "release_date",
-                                    "value": "2023-02-24",
+                                    "value": "1960-12-23",
                                     "type": "text",
-                                    "description": "Must be a valid date. Must be a valid date in the format <code>Y-m-d<\/code>."
+                                    "description": "Book's released date with format Y-m-d."
                                 },
                                 {
                                     "key": "tag_ids[0]",
-                                    "value": 577471.50746626,
+                                    "value": 20,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -527,15 +517,22 @@
                                 }
                             ]
                         },
-                        "description": "",
+                        "description": "Update the specified author data in database.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     {\n         \"book\": {\n             \"id\": 13,\n             \"title\": \"Harry Potter\",\n             \"description\": \"This harry potter description\",\n             \"price\": 150000,\n             \"release_date\": \"2023-12-23T00:00:00.000000Z\",\n             \"image_path\": null,\n             \"author\": {\n                 \"id\": 1,\n                 \"name\": \"Dr. Verlie Waelchi V\",\n                 \"dob\": \"1984-01-07\",\n                 \"description\": \"Quas et sed sit est expedita dolores. Voluptatem et iste et aspernatur est dolore in. Iure nesciunt voluptate quia voluptatem. Excepturi soluta qui rerum dicta et dolorem.\",\n                 \"created_at\": \"2023-02-24T05:27:46.000000Z\",\n                 \"updated_at\": \"2023-02-24T05:27:46.000000Z\"\n             },\n             \"tags\": [\n                 {\n                     \"id\": 1,\n                     \"name\": \"Dictionary\"\n                 },\n                 {\n                     \"id\": 2,\n                     \"name\": \"Novel\"\n                 }\n             ],\n             \"created_at\": \"2023-02-24T05:28:13.000000Z\",\n             \"updated_at\": \"2023-02-24T05:28:13.000000Z\"\n         },\n         \"message\": \"Book has been updated\"\n     }\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "Remove the specified resource from storage.",
+                    "name": "Remove book data",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -546,8 +543,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2",
-                                    "description": "The ID of the book."
+                                    "value": "13",
+                                    "description": "Book ID."
                                 }
                             ]
                         },
@@ -563,21 +560,53 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
+                        "description": "Remove the specified book from database.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
-                },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     \"author\": {\n             \"id\": 13,\n             \"title\": \"Harry Potter\",\n             \"description\": \"This harry potter description\",\n             \"price\": 150000,\n             \"release_date\": \"2023-12-23T00:00:00.000000Z\",\n             \"image_path\": null,\n             \"author\": {\n                 \"id\": 1,\n                 \"name\": \"Dr. Verlie Waelchi V\",\n                 \"dob\": \"1984-01-07\",\n                 \"description\": \"Quas et sed sit est expedita dolores. Voluptatem et iste et aspernatur est dolore in. Iure nesciunt voluptate quia voluptatem. Excepturi soluta qui rerum dicta et dolorem.\",\n                 \"created_at\": \"2023-02-24T05:27:46.000000Z\",\n                 \"updated_at\": \"2023-02-24T05:27:46.000000Z\"\n             },\n             \"tags\": [\n                 {\n                     \"id\": 1,\n                     \"name\": \"Dictionary\"\n                 },\n                 {\n                     \"id\": 2,\n                     \"name\": \"Novel\"\n                 }\n             ],\n             \"created_at\": \"2023-02-24T05:28:13.000000Z\",\n             \"updated_at\": \"2023-02-24T05:28:13.000000Z\"\n     },\n     \"message\": \"Book has been deleted\"\n }",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Tag Management",
+            "description": "\nAPI collection to manage tags data.",
+            "item": [
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "Tag Collection",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/v1\/tags",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/tags"
+                            "query": [
+                                {
+                                    "key": "q",
+                                    "value": "Encyclopedia",
+                                    "description": "Searching keyword of the collection.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "10",
+                                    "description": "Count of items per page. Allowed size 10, 25, 50, 100. Default 10.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page index to view.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/tags?q=Encyclopedia&pageSize=10&page=1"
                         },
                         "method": "GET",
                         "header": [
@@ -592,45 +621,24 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"pageSize\":\"50\",\"q\":\"ex\"}"
+                            "raw": "{\"pageSize\":10,\"q\":\"Encyclopedia\"}"
                         },
-                        "description": "",
+                        "description": "Get tag collection",
                         "auth": {
                             "type": "noauth"
                         }
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "56"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
+                            "header": [],
                             "code": 200,
-                            "body": "{\"tags\":[],\"links\":{\"first\":\"http:\\\/\\\/api_book_store_laravel.test\\\/api\\\/v1\\\/tags?page=1\",\"last\":\"http:\\\/\\\/api_book_store_laravel.test\\\/api\\\/v1\\\/tags?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":null,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/api_book_store_laravel.test\\\/api\\\/v1\\\/tags?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/api_book_store_laravel.test\\\/api\\\/v1\\\/tags\",\"per_page\":50,\"to\":null,\"total\":0},\"message\":\"Success to get tag collection\"}",
+                            "body": "{\"tags\":[{\"id\":1,\"name\":\"Dictionary\"},{\"id\":1,\"name\":\"Dictionary\"}],\"message\":\"Success to get tag collection\"}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "Store a newly created resource in storage.",
+                    "name": "Store new tag",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -651,17 +659,24 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"est\"}"
+                            "raw": "{\"name\":\"Magazine\"}"
                         },
-                        "description": "",
+                        "description": "Store a newly created tag in database.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n     \"tag\": {\n         \"id\": 2,\n         \"name\": \"Magazine\"\n     },\n     \"message\": \"Tag has been created.\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "Remove the specified resource from storage.",
+                    "name": "Delete tag",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -672,8 +687,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "14",
-                                    "description": "The ID of the tag."
+                                    "value": "1",
+                                    "description": "Tag ID."
                                 }
                             ]
                         },
@@ -689,12 +704,19 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
+                        "description": "Remove the specified tag from database.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     \"tag\": {\n         \"id\": 2,\n         \"name\": \"Magazine\"\n     },\n     \"message\": \"Tag has been deleted.\"\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         }

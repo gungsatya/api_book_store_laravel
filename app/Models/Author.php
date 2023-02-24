@@ -33,6 +33,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Author whereId($value)
  * @method static Builder|Author whereName($value)
  * @method static Builder|Author whereUpdatedAt($value)
+ * @property-read Collection<int, \App\Models\Book> $books
  * @mixin Eloquent
  */
 class Author extends Model

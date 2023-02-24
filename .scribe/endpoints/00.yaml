@@ -235,7 +235,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"author":{"id":4,"name":"Micah Bernier","dob":"1992-03-23","description":"Nobis excepturi quasi vel aut est iusto est ut. Sit autem minus ratione hic nam.","created_at":"2023-02-24T03:39:52.000000Z","updated_at":"2023-02-24T03:39:52.000000Z"},"message":"Success to get author data"}'
+        content: '{"author":{"id":20,"name":"Celestino Larson","dob":"2008-01-22","description":"Et sit ratione omnis excepturi cumque laborum vel. Laborum numquam consectetur asperiores sit. Ipsa qui odio quo unde porro quaerat. Dolor enim voluptatem dolore quis atque et.","created_at":"2023-02-24T06:10:16.000000Z","updated_at":"2023-02-24T06:10:16.000000Z"},"message":"Success to get author data"}'
         headers: []
         description: ''
         custom: []

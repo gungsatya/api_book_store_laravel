@@ -13,13 +13,28 @@ use Illuminate\Support\Facades\Validator;
 use Throwable;
 
 /**
- * TagController
+ * @group Tag Management
+ *
+ * API collection to manage tags data.
+ *
  * @author Satya Wibawa <i.g.b.n.satyawibawa@gmail.com>
  */
 class TagController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Tag Collection
+     *
+     * Get tag collection
+     *
+     * @queryParam q string Searching keyword of the collection. Example: Encyclopedia
+     * @queryParam pageSize int Count of items per page. Allowed size 10, 25, 50, 100. Default 10. Example: 10
+     * @queryParam page int Page index to view. Example: 1
+     *
+     * @bodyParam q string Searching keyword of the collection. Example: Encyclopedia
+     * @bodyParam pageSize int Count of items per page. Allowed size 10, 25, 50, 100. Default 10. Example: 10
+     *
+     * @apiResourceCollection App\Http\Resources\TagCollection
+     * @apiResourceModel App\Models\Tag
      *
      * @param CollectionRequest $request
      * @return ResourceCollection
@@ -35,7 +50,20 @@ class TagController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store new tag
+     *
+     * Store a newly created tag in database.
+     *
+     * @bodyParam name string required Tag's name. Example: Magazine
+     *
+     * @response 201 {
+     *      "tag": {
+     *          "id": 2,
+     *          "name": "Magazine"
+     *      },
+     *      "message": "Tag has been created."
+     * }
+     * @apiResourceModel App\Models\Tag
      *
      * @param Request $request
      * @param TagRepository $repository
@@ -67,7 +95,20 @@ class TagController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * Delete tag
+     *
+     * Remove the specified tag from database.
+     *
+     * @urlParam id int required Tag ID. Example: 1
+     *
+     * @response 200 {
+     *      "tag": {
+     *          "id": 2,
+     *          "name": "Magazine"
+     *      },
+     *      "message": "Tag has been deleted."
+     * }
+     * @apiResourceModel App\Models\Tag
      *
      * @param TagRepository $repository
      * @param Tag $tag

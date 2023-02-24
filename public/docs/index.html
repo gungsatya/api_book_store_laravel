@@ -88,34 +88,41 @@
                             </li>
                                                                         </ul>
                             </ul>
-                    <ul id="tocify-header-endpoints" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="endpoints">
-                    <a href="#endpoints">Endpoints</a>
+                    <ul id="tocify-header-book-management" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="book-management">
+                    <a href="#book-management">Book Management</a>
                 </li>
-                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-books">
-                                <a href="#endpoints-GETapi-v1-books">Display a listing of the resource.</a>
+                                    <ul id="tocify-subheader-book-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="book-management-GETapi-v1-books">
+                                <a href="#book-management-GETapi-v1-books">Book Collections</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-books">
-                                <a href="#endpoints-POSTapi-v1-books">Store a newly created resource in storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="book-management-POSTapi-v1-books">
+                                <a href="#book-management-POSTapi-v1-books">Store new book data</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-books--id-">
-                                <a href="#endpoints-GETapi-v1-books--id-">Display the specified resource.</a>
+                                                                                <li class="tocify-item level-2" data-unique="book-management-GETapi-v1-books--id-">
+                                <a href="#book-management-GETapi-v1-books--id-">Show book data</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-v1-books--id-">
-                                <a href="#endpoints-PUTapi-v1-books--id-">Update the specified resource in storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="book-management-PUTapi-v1-books--id-">
+                                <a href="#book-management-PUTapi-v1-books--id-">Update book data</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-v1-books--id-">
-                                <a href="#endpoints-DELETEapi-v1-books--id-">Remove the specified resource from storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="book-management-DELETEapi-v1-books--id-">
+                                <a href="#book-management-DELETEapi-v1-books--id-">Remove book data</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-tags">
-                                <a href="#endpoints-GETapi-v1-tags">Display a listing of the resource.</a>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-tag-management" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="tag-management">
+                    <a href="#tag-management">Tag Management</a>
+                </li>
+                                    <ul id="tocify-subheader-tag-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="tag-management-GETapi-v1-tags">
+                                <a href="#tag-management-GETapi-v1-tags">Tag Collection</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-tags">
-                                <a href="#endpoints-POSTapi-v1-tags">Store a newly created resource in storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="tag-management-POSTapi-v1-tags">
+                                <a href="#tag-management-POSTapi-v1-tags">Store new tag</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-v1-tags--id-">
-                                <a href="#endpoints-DELETEapi-v1-tags--id-">Remove the specified resource from storage.</a>
+                                                                                <li class="tocify-item level-2" data-unique="tag-management-DELETEapi-v1-tags--id-">
+                                <a href="#tag-management-DELETEapi-v1-tags--id-">Delete tag</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -138,11 +145,8 @@
         <h1 id="introduction">Introduction</h1>
 <p>This API for educational purpose with study case book store. Created by Satya Wibawa.</p>
 <aside>
-    <strong>Base URL</strong>: <code>http://api_book_store_laravel.test</code>
+    <strong>Base URL</strong>: <code>http://localhost:8000</code>
 </aside>
-<p>This documentation aims to provide all the information you need to work with our API.</p>
-<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
-You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
@@ -164,7 +168,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://api_book_store_laravel.test/api/v1/authors?q=Eileen&amp;pageSize=10&amp;page=1" \
+    --get "http://localhost:8000/api/v1/authors?q=Eileen&amp;pageSize=10&amp;page=1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -176,7 +180,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/authors"
+    "http://localhost:8000/api/v1/authors"
 );
 
 const params = {
@@ -391,7 +395,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://api_book_store_laravel.test/api/v1/authors" \
+    "http://localhost:8000/api/v1/authors" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -404,7 +408,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/authors"
+    "http://localhost:8000/api/v1/authors"
 );
 
 const headers = {
@@ -555,14 +559,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://api_book_store_laravel.test/api/v1/authors/1" \
+    --get "http://localhost:8000/api/v1/authors/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/authors/1"
+    "http://localhost:8000/api/v1/authors/1"
 );
 
 const headers = {
@@ -585,12 +589,12 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;author&quot;: {
-        &quot;id&quot;: 4,
-        &quot;name&quot;: &quot;Micah Bernier&quot;,
-        &quot;dob&quot;: &quot;1992-03-23&quot;,
-        &quot;description&quot;: &quot;Nobis excepturi quasi vel aut est iusto est ut. Sit autem minus ratione hic nam.&quot;,
-        &quot;created_at&quot;: &quot;2023-02-24T03:39:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2023-02-24T03:39:52.000000Z&quot;
+        &quot;id&quot;: 20,
+        &quot;name&quot;: &quot;Celestino Larson&quot;,
+        &quot;dob&quot;: &quot;2008-01-22&quot;,
+        &quot;description&quot;: &quot;Et sit ratione omnis excepturi cumque laborum vel. Laborum numquam consectetur asperiores sit. Ipsa qui odio quo unde porro quaerat. Dolor enim voluptatem dolore quis atque et.&quot;,
+        &quot;created_at&quot;: &quot;2023-02-24T06:10:16.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-02-24T06:10:16.000000Z&quot;
     },
     &quot;message&quot;: &quot;Success to get author data&quot;
 }</code>
@@ -684,7 +688,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://api_book_store_laravel.test/api/v1/authors/2" \
+    "http://localhost:8000/api/v1/authors/2" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -697,7 +701,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/authors/2"
+    "http://localhost:8000/api/v1/authors/2"
 );
 
 const headers = {
@@ -860,14 +864,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://api_book_store_laravel.test/api/v1/authors/2" \
+    "http://localhost:8000/api/v1/authors/2" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/authors/2"
+    "http://localhost:8000/api/v1/authors/2"
 );
 
 const headers = {
@@ -976,16 +980,16 @@ fetch(url, {
             </div>
                     </form>
 
-                <h1 id="endpoints">Endpoints</h1>
+                <h1 id="book-management">Book Management</h1>
 
-    
+    <p>API collection to manage books data.</p>
 
-                                <h2 id="endpoints-GETapi-v1-books">Display a listing of the resource.</h2>
+                                <h2 id="book-management-GETapi-v1-books">Book Collections</h2>
 
 <p>
 </p>
 
-
+<p>Get book list</p>
 
 <span id="example-requests-GETapi-v1-books">
 <blockquote>Example request:</blockquote>
@@ -993,21 +997,30 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://api_book_store_laravel.test/api/v1/books" \
+    --get "http://localhost:8000/api/v1/books?tag_ids=1%2C2&amp;q=Harry+Potter&amp;pageSize=10&amp;page=1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"pageSize\": 388.432,
-    \"q\": \"aspernatur\",
-    \"tag_ids\": \"excepturi\"
+    \"pageSize\": 10,
+    \"q\": \"Harry Potter\",
+    \"tag_ids\": \"1,2\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/books"
+    "http://localhost:8000/api/v1/books"
 );
+
+const params = {
+    "tag_ids": "1,2",
+    "q": "Harry Potter",
+    "pageSize": "10",
+    "page": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -1015,9 +1028,9 @@ const headers = {
 };
 
 let body = {
-    "pageSize": 388.432,
-    "q": "aspernatur",
-    "tag_ids": "excepturi"
+    "pageSize": 10,
+    "q": "Harry Potter",
+    "tag_ids": "1,2"
 };
 
 fetch(url, {
@@ -1030,26 +1043,66 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-books">
             <blockquote>
-            <p>Example response (422):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 58
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The page size value is not allowed. (Allowed: [10, 25, 50, 100])&quot;,
-    &quot;errors&quot;: {
-        &quot;pageSize&quot;: [
-            &quot;The page size value is not allowed. (Allowed: [10, 25, 50, 100])&quot;
-        ]
-    }
+    &quot;books&quot;: [
+        {
+            &quot;id&quot;: 13,
+            &quot;title&quot;: &quot;Harry Potter&quot;,
+            &quot;description&quot;: &quot;This harry potter description&quot;,
+            &quot;price&quot;: 150000,
+            &quot;release_date&quot;: &quot;2023-12-23T00:00:00.000000Z&quot;,
+            &quot;image_path&quot;: null,
+            &quot;tags&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;Dictionary&quot;
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Novel&quot;
+                }
+            ],
+            &quot;created_at&quot;: &quot;2023-02-24T05:28:13.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-02-24T05:28:13.000000Z&quot;
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;http://127.0.0.1:8000/api/v1/books?page=1&quot;,
+        &quot;last&quot;: &quot;http://127.0.0.1:8000/api/v1/books?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;links&quot;: [
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://127.0.0.1:8000/api/v1/books?page=1&quot;,
+                &quot;label&quot;: &quot;1&quot;,
+                &quot;active&quot;: true
+            },
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                &quot;active&quot;: false
+            }
+        ],
+        &quot;path&quot;: &quot;http://127.0.0.1:8000/api/v1/books&quot;,
+        &quot;per_page&quot;: 10,
+        &quot;to&quot;: 1,
+        &quot;total&quot;: 1
+    },
+    &quot;message&quot;: &quot;Success to get book collection&quot;
 }</code>
  </pre>
     </span>
@@ -1114,17 +1167,62 @@ access-control-allow-origin: *
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>pageSize</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>tag_ids</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="tag_ids"                data-endpoint="GETapi-v1-books"
+               value="1,2"
+               data-component="query">
+    <br>
+<p>IDs of tag in search. Example: <code>1,2</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="q"                data-endpoint="GETapi-v1-books"
+               value="Harry Potter"
+               data-component="query">
+    <br>
+<p>Searching keyword of the collection. Example: <code>Harry Potter</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>pageSize</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="pageSize"                data-endpoint="GETapi-v1-books"
-               value="388.432"
+               value="10"
+               data-component="query">
+    <br>
+<p>Count of items per page. Allowed size 10, 25, 50, 100. Default 10. Example: <code>10</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="page"                data-endpoint="GETapi-v1-books"
+               value="1"
+               data-component="query">
+    <br>
+<p>Page index to view. Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pageSize</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="pageSize"                data-endpoint="GETapi-v1-books"
+               value="10"
                data-component="body">
     <br>
-<p>Example: <code>388.432</code></p>
+<p>Count of items per page. Allowed size 10, 25, 50, 100. Default 10. Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
@@ -1132,10 +1230,10 @@ access-control-allow-origin: *
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="q"                data-endpoint="GETapi-v1-books"
-               value="aspernatur"
+               value="Harry Potter"
                data-component="body">
     <br>
-<p>Example: <code>aspernatur</code></p>
+<p>Searching keyword of the collection. Example: <code>Harry Potter</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>tag_ids</code></b>&nbsp;&nbsp;
@@ -1143,19 +1241,19 @@ access-control-allow-origin: *
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="tag_ids"                data-endpoint="GETapi-v1-books"
-               value="excepturi"
+               value="1,2"
                data-component="body">
     <br>
-<p>Example: <code>excepturi</code></p>
+<p>IDs of tag in search. Example: <code>1,2</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-v1-books">Store a newly created resource in storage.</h2>
+                    <h2 id="book-management-POSTapi-v1-books">Store new book data</h2>
 
 <p>
 </p>
 
-
+<p>Store a newly created book data in database.</p>
 
 <span id="example-requests-POSTapi-v1-books">
 <blockquote>Example request:</blockquote>
@@ -1163,21 +1261,21 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://api_book_store_laravel.test/api/v1/books" \
+    "http://localhost:8000/api/v1/books" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "author_id=13793776.53656" \
-    --form "title=et" \
-    --form "description=Est tempore aut voluptatem deleniti." \
-    --form "price=71.547" \
-    --form "release_date=2023-02-24" \
-    --form "tag_ids[]=73.3" \
-    --form "cover_image=@C:\Users\igbns\AppData\Local\Temp\phpB8A.tmp" </code></pre></div>
+    --form "author_id=1" \
+    --form "title=Harry Potter" \
+    --form "description=This harry potter description" \
+    --form "price=150000" \
+    --form "release_date=1960-12-23" \
+    --form "tag_ids[]=11" \
+    --form "cover_image=@C:\Users\igbns\AppData\Local\Temp\phpBF70.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/books"
+    "http://localhost:8000/api/v1/books"
 );
 
 const headers = {
@@ -1186,12 +1284,12 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('author_id', '13793776.53656');
-body.append('title', 'et');
-body.append('description', 'Est tempore aut voluptatem deleniti.');
-body.append('price', '71.547');
-body.append('release_date', '2023-02-24');
-body.append('tag_ids[]', '73.3');
+body.append('author_id', '1');
+body.append('title', 'Harry Potter');
+body.append('description', 'This harry potter description');
+body.append('price', '150000');
+body.append('release_date', '1960-12-23');
+body.append('tag_ids[]', '11');
 body.append('cover_image', document.querySelector('input[name="cover_image"]').files[0]);
 
 fetch(url, {
@@ -1203,7 +1301,46 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-books">
-</span>
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+     {
+         &quot;book&quot;: {
+             &quot;id&quot;: 13,
+             &quot;title&quot;: &quot;Harry Potter&quot;,
+             &quot;description&quot;: &quot;This harry potter description&quot;,
+             &quot;price&quot;: 150000,
+             &quot;release_date&quot;: &quot;2023-12-23T00:00:00.000000Z&quot;,
+             &quot;image_path&quot;: null,
+             &quot;author&quot;: {
+                 &quot;id&quot;: 1,
+                 &quot;name&quot;: &quot;Dr. Verlie Waelchi V&quot;,
+                 &quot;dob&quot;: &quot;1984-01-07&quot;,
+                 &quot;description&quot;: &quot;Quas et sed sit est expedita dolores. Voluptatem et iste et aspernatur est dolore in. Iure nesciunt voluptate quia voluptatem. Excepturi soluta qui rerum dicta et dolorem.&quot;,
+                 &quot;created_at&quot;: &quot;2023-02-24T05:27:46.000000Z&quot;,
+                 &quot;updated_at&quot;: &quot;2023-02-24T05:27:46.000000Z&quot;
+             },
+             &quot;tags&quot;: [
+                 {
+                     &quot;id&quot;: 1,
+                     &quot;name&quot;: &quot;Dictionary&quot;
+                 },
+                 {
+                     &quot;id&quot;: 2,
+                     &quot;name&quot;: &quot;Novel&quot;
+                 }
+             ],
+             &quot;created_at&quot;: &quot;2023-02-24T05:28:13.000000Z&quot;,
+             &quot;updated_at&quot;: &quot;2023-02-24T05:28:13.000000Z&quot;
+         },
+         &quot;message&quot;: &quot;Book has been created&quot;
+         }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-books" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-books"></span>:
@@ -1268,14 +1405,14 @@ fetch(url, {
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>author_id</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
                name="author_id"                data-endpoint="POSTapi-v1-books"
-               value="13793776.53656"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>13793776.53656</code></p>
+<p>Book's Author. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
@@ -1283,10 +1420,10 @@ fetch(url, {
  &nbsp;
                 <input type="text" style="display: none"
                name="title"                data-endpoint="POSTapi-v1-books"
-               value="et"
+               value="Harry Potter"
                data-component="body">
     <br>
-<p>Example: <code>et</code></p>
+<p>Book's title. Example: <code>Harry Potter</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -1294,10 +1431,10 @@ fetch(url, {
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="description"                data-endpoint="POSTapi-v1-books"
-               value="Est tempore aut voluptatem deleniti."
+               value="This harry potter description"
                data-component="body">
     <br>
-<p>Example: <code>Est tempore aut voluptatem deleniti.</code></p>
+<p>Description of the book. Example: <code>This harry potter description</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -1305,21 +1442,21 @@ fetch(url, {
  &nbsp;
                 <input type="number" style="display: none"
                name="price"                data-endpoint="POSTapi-v1-books"
-               value="71.547"
+               value="150000"
                data-component="body">
     <br>
-<p>Example: <code>71.547</code></p>
+<p>Book's price. Example: <code>150000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>release_date</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>date</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                name="release_date"                data-endpoint="POSTapi-v1-books"
-               value="2023-02-24"
+               value="1960-12-23"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2023-02-24</code></p>
+<p>Book's released date with format Y-m-d. Example: <code>1960-12-23</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>cover_image</code></b>&nbsp;&nbsp;
@@ -1330,11 +1467,11 @@ fetch(url, {
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>C:\Users\igbns\AppData\Local\Temp\phpB8A.tmp</code></p>
+<p>Book's cover image Example: <code>C:\Users\igbns\AppData\Local\Temp\phpBF70.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>tag_ids</code></b>&nbsp;&nbsp;
-<small>number[]</small>&nbsp;
+<small>integer[]</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="tag_ids[0]"                data-endpoint="POSTapi-v1-books"
@@ -1343,16 +1480,16 @@ fetch(url, {
                name="tag_ids[1]"                data-endpoint="POSTapi-v1-books"
                data-component="body">
     <br>
-
+<p>Tag ids</p>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-v1-books--id-">Display the specified resource.</h2>
+                    <h2 id="book-management-GETapi-v1-books--id-">Show book data</h2>
 
 <p>
 </p>
 
-
+<p>Display detail data of the author</p>
 
 <span id="example-requests-GETapi-v1-books--id-">
 <blockquote>Example request:</blockquote>
@@ -1360,14 +1497,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://api_book_store_laravel.test/api/v1/books/6" \
+    --get "http://localhost:8000/api/v1/books/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/books/6"
+    "http://localhost:8000/api/v1/books/1"
 );
 
 const headers = {
@@ -1384,467 +1521,22 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-books--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 57
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\Book] 6&quot;,
-    &quot;exception&quot;: &quot;Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException&quot;,
-    &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php&quot;,
-    &quot;line&quot;: 391,
-    &quot;trace&quot;: [
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php&quot;,
-            &quot;line&quot;: 367,
-            &quot;function&quot;: &quot;prepareException&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Exceptions\\Handler&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\nunomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;render&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Exceptions\\Handler&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php&quot;,
-            &quot;line&quot;: 51,
-            &quot;function&quot;: &quot;render&quot;,
-            &quot;class&quot;: &quot;NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 185,
-            &quot;function&quot;: &quot;handleException&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 126,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 102,
-            &quot;function&quot;: &quot;handleRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php&quot;,
-            &quot;line&quot;: 33,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
-            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php&quot;,
-            &quot;line&quot;: 34,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 799,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 776,
-            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 740,
-            &quot;function&quot;: &quot;runRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 729,
-            &quot;function&quot;: &quot;dispatchToRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 190,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php&quot;,
-            &quot;line&quot;: 31,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php&quot;,
-            &quot;line&quot;: 27,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php&quot;,
-            &quot;line&quot;: 62,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\HandleCors&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php&quot;,
-            &quot;line&quot;: 39,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 165,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 134,
-            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 287,
-            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 92,
-            &quot;function&quot;: &quot;makeApiCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;makeResponseCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 35,
-            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 209,
-            &quot;function&quot;: &quot;__invoke&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 166,
-            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 95,
-            &quot;function&quot;: &quot;fetchResponses&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 124,
-            &quot;function&quot;: &quot;processRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 71,
-            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 49,
-            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php&quot;,
-            &quot;line&quot;: 51,
-            &quot;function&quot;: &quot;get&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 36,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php&quot;,
-            &quot;line&quot;: 41,
-            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 93,
-            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;callBoundMethod&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php&quot;,
-            &quot;line&quot;: 661,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 183,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\symfony\\console\\Command\\Command.php&quot;,
-            &quot;line&quot;: 312,
-            &quot;function&quot;: &quot;execute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 153,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 1022,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 314,
-            &quot;function&quot;: &quot;doRunCommand&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 168,
-            &quot;function&quot;: &quot;doRun&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php&quot;,
-            &quot;line&quot;: 102,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php&quot;,
-            &quot;line&quot;: 155,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;D:\\Projects\\book-store\\api_book_store_laravel\\artisan&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        }
-    ]
+    &quot;book&quot;: {
+        &quot;id&quot;: 27,
+        &quot;title&quot;: &quot;Et quas.&quot;,
+        &quot;description&quot;: &quot;Rerum esse similique eos minus quibusdam. Quo autem pariatur autem ipsam. Itaque et atque necessitatibus officia rerum magnam rem. Quod illo debitis est repellendus sed.&quot;,
+        &quot;price&quot;: 57807,
+        &quot;release_date&quot;: &quot;2016-06-06T00:00:00.000000Z&quot;,
+        &quot;image_path&quot;: null,
+        &quot;created_at&quot;: &quot;2023-02-24T06:10:16.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-02-24T06:10:16.000000Z&quot;
+    },
+    &quot;message&quot;: &quot;Success to get book data&quot;
 }</code>
  </pre>
     </span>
@@ -1916,19 +1608,19 @@ access-control-allow-origin: *
  &nbsp;
                 <input type="number" style="display: none"
                name="id"                data-endpoint="GETapi-v1-books--id-"
-               value="6"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the book. Example: <code>6</code></p>
+<p>Book ID. Example: <code>1</code></p>
             </div>
                     </form>
 
-                    <h2 id="endpoints-PUTapi-v1-books--id-">Update the specified resource in storage.</h2>
+                    <h2 id="book-management-PUTapi-v1-books--id-">Update book data</h2>
 
 <p>
 </p>
 
-
+<p>Update the specified author data in database.</p>
 
 <span id="example-requests-PUTapi-v1-books--id-">
 <blockquote>Example request:</blockquote>
@@ -1936,21 +1628,21 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://api_book_store_laravel.test/api/v1/books/9" \
+    "http://localhost:8000/api/v1/books/13" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "author_id=20.271950904" \
-    --form "title=nobis" \
-    --form "description=Debitis laborum sed minus doloremque iure consequuntur non." \
-    --form "price=501" \
-    --form "release_date=2023-02-24" \
-    --form "tag_ids[]=577471.50746626" \
-    --form "cover_image=@C:\Users\igbns\AppData\Local\Temp\phpBAB.tmp" </code></pre></div>
+    --form "author_id=1" \
+    --form "title=Harry Potter" \
+    --form "description=This harry potter description" \
+    --form "price=150000" \
+    --form "release_date=1960-12-23" \
+    --form "tag_ids[]=20" \
+    --form "cover_image=@C:\Users\igbns\AppData\Local\Temp\phpBF91.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/books/9"
+    "http://localhost:8000/api/v1/books/13"
 );
 
 const headers = {
@@ -1959,12 +1651,12 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('author_id', '20.271950904');
-body.append('title', 'nobis');
-body.append('description', 'Debitis laborum sed minus doloremque iure consequuntur non.');
-body.append('price', '501');
-body.append('release_date', '2023-02-24');
-body.append('tag_ids[]', '577471.50746626');
+body.append('author_id', '1');
+body.append('title', 'Harry Potter');
+body.append('description', 'This harry potter description');
+body.append('price', '150000');
+body.append('release_date', '1960-12-23');
+body.append('tag_ids[]', '20');
 body.append('cover_image', document.querySelector('input[name="cover_image"]').files[0]);
 
 fetch(url, {
@@ -1976,7 +1668,46 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-books--id-">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+     {
+         &quot;book&quot;: {
+             &quot;id&quot;: 13,
+             &quot;title&quot;: &quot;Harry Potter&quot;,
+             &quot;description&quot;: &quot;This harry potter description&quot;,
+             &quot;price&quot;: 150000,
+             &quot;release_date&quot;: &quot;2023-12-23T00:00:00.000000Z&quot;,
+             &quot;image_path&quot;: null,
+             &quot;author&quot;: {
+                 &quot;id&quot;: 1,
+                 &quot;name&quot;: &quot;Dr. Verlie Waelchi V&quot;,
+                 &quot;dob&quot;: &quot;1984-01-07&quot;,
+                 &quot;description&quot;: &quot;Quas et sed sit est expedita dolores. Voluptatem et iste et aspernatur est dolore in. Iure nesciunt voluptate quia voluptatem. Excepturi soluta qui rerum dicta et dolorem.&quot;,
+                 &quot;created_at&quot;: &quot;2023-02-24T05:27:46.000000Z&quot;,
+                 &quot;updated_at&quot;: &quot;2023-02-24T05:27:46.000000Z&quot;
+             },
+             &quot;tags&quot;: [
+                 {
+                     &quot;id&quot;: 1,
+                     &quot;name&quot;: &quot;Dictionary&quot;
+                 },
+                 {
+                     &quot;id&quot;: 2,
+                     &quot;name&quot;: &quot;Novel&quot;
+                 }
+             ],
+             &quot;created_at&quot;: &quot;2023-02-24T05:28:13.000000Z&quot;,
+             &quot;updated_at&quot;: &quot;2023-02-24T05:28:13.000000Z&quot;
+         },
+         &quot;message&quot;: &quot;Book has been updated&quot;
+     }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-books--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-books--id-"></span>:
@@ -2045,22 +1776,22 @@ fetch(url, {
  &nbsp;
                 <input type="number" style="display: none"
                name="id"                data-endpoint="PUTapi-v1-books--id-"
-               value="9"
+               value="13"
                data-component="url">
     <br>
-<p>The ID of the book. Example: <code>9</code></p>
+<p>Book ID. Example: <code>13</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>author_id</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
                name="author_id"                data-endpoint="PUTapi-v1-books--id-"
-               value="20.271950904"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>20.271950904</code></p>
+<p>Book's Author. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
@@ -2068,10 +1799,10 @@ fetch(url, {
  &nbsp;
                 <input type="text" style="display: none"
                name="title"                data-endpoint="PUTapi-v1-books--id-"
-               value="nobis"
+               value="Harry Potter"
                data-component="body">
     <br>
-<p>Example: <code>nobis</code></p>
+<p>Book's title. Example: <code>Harry Potter</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -2079,10 +1810,10 @@ fetch(url, {
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="description"                data-endpoint="PUTapi-v1-books--id-"
-               value="Debitis laborum sed minus doloremque iure consequuntur non."
+               value="This harry potter description"
                data-component="body">
     <br>
-<p>Example: <code>Debitis laborum sed minus doloremque iure consequuntur non.</code></p>
+<p>Description of the book. Example: <code>This harry potter description</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -2090,21 +1821,21 @@ fetch(url, {
  &nbsp;
                 <input type="number" style="display: none"
                name="price"                data-endpoint="PUTapi-v1-books--id-"
-               value="501"
+               value="150000"
                data-component="body">
     <br>
-<p>Example: <code>501</code></p>
+<p>Book's price. Example: <code>150000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>release_date</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>date</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                name="release_date"                data-endpoint="PUTapi-v1-books--id-"
-               value="2023-02-24"
+               value="1960-12-23"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2023-02-24</code></p>
+<p>Book's released date with format Y-m-d. Example: <code>1960-12-23</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>cover_image</code></b>&nbsp;&nbsp;
@@ -2115,11 +1846,11 @@ fetch(url, {
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>C:\Users\igbns\AppData\Local\Temp\phpBAB.tmp</code></p>
+<p>Book's cover image Example: <code>C:\Users\igbns\AppData\Local\Temp\phpBF91.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>tag_ids</code></b>&nbsp;&nbsp;
-<small>number[]</small>&nbsp;
+<small>integer[]</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="tag_ids[0]"                data-endpoint="PUTapi-v1-books--id-"
@@ -2128,16 +1859,16 @@ fetch(url, {
                name="tag_ids[1]"                data-endpoint="PUTapi-v1-books--id-"
                data-component="body">
     <br>
-
+<p>Tag ids</p>
         </div>
         </form>
 
-                    <h2 id="endpoints-DELETEapi-v1-books--id-">Remove the specified resource from storage.</h2>
+                    <h2 id="book-management-DELETEapi-v1-books--id-">Remove book data</h2>
 
 <p>
 </p>
 
-
+<p>Remove the specified book from database.</p>
 
 <span id="example-requests-DELETEapi-v1-books--id-">
 <blockquote>Example request:</blockquote>
@@ -2145,14 +1876,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://api_book_store_laravel.test/api/v1/books/2" \
+    "http://localhost:8000/api/v1/books/13" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/books/2"
+    "http://localhost:8000/api/v1/books/13"
 );
 
 const headers = {
@@ -2168,7 +1899,44 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-books--id-">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;author&quot;: {
+        &quot;id&quot;: 13,
+        &quot;title&quot;: &quot;Harry Potter&quot;,
+        &quot;description&quot;: &quot;This harry potter description&quot;,
+        &quot;price&quot;: 150000,
+        &quot;release_date&quot;: &quot;2023-12-23T00:00:00.000000Z&quot;,
+        &quot;image_path&quot;: null,
+        &quot;author&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Dr. Verlie Waelchi V&quot;,
+            &quot;dob&quot;: &quot;1984-01-07&quot;,
+            &quot;description&quot;: &quot;Quas et sed sit est expedita dolores. Voluptatem et iste et aspernatur est dolore in. Iure nesciunt voluptate quia voluptatem. Excepturi soluta qui rerum dicta et dolorem.&quot;,
+            &quot;created_at&quot;: &quot;2023-02-24T05:27:46.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-02-24T05:27:46.000000Z&quot;
+        },
+        &quot;tags&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dictionary&quot;
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Novel&quot;
+            }
+        ],
+        &quot;created_at&quot;: &quot;2023-02-24T05:28:13.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-02-24T05:28:13.000000Z&quot;
+    },
+    &quot;message&quot;: &quot;Book has been deleted&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-books--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-books--id-"></span>:
@@ -2237,19 +2005,23 @@ fetch(url, {
  &nbsp;
                 <input type="number" style="display: none"
                name="id"                data-endpoint="DELETEapi-v1-books--id-"
-               value="2"
+               value="13"
                data-component="url">
     <br>
-<p>The ID of the book. Example: <code>2</code></p>
+<p>Book ID. Example: <code>13</code></p>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-v1-tags">Display a listing of the resource.</h2>
+                <h1 id="tag-management">Tag Management</h1>
+
+    <p>API collection to manage tags data.</p>
+
+                                <h2 id="tag-management-GETapi-v1-tags">Tag Collection</h2>
 
 <p>
 </p>
 
-
+<p>Get tag collection</p>
 
 <span id="example-requests-GETapi-v1-tags">
 <blockquote>Example request:</blockquote>
@@ -2257,20 +2029,28 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://api_book_store_laravel.test/api/v1/tags" \
+    --get "http://localhost:8000/api/v1/tags?q=Encyclopedia&amp;pageSize=10&amp;page=1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"pageSize\": \"50\",
-    \"q\": \"ex\"
+    \"pageSize\": 10,
+    \"q\": \"Encyclopedia\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/tags"
+    "http://localhost:8000/api/v1/tags"
 );
+
+const params = {
+    "q": "Encyclopedia",
+    "pageSize": "10",
+    "page": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -2278,8 +2058,8 @@ const headers = {
 };
 
 let body = {
-    "pageSize": "50",
-    "q": "ex"
+    "pageSize": 10,
+    "q": "Encyclopedia"
 };
 
 fetch(url, {
@@ -2294,51 +2074,19 @@ fetch(url, {
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 56
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;tags&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://api_book_store_laravel.test/api/v1/tags?page=1&quot;,
-        &quot;last&quot;: &quot;http://api_book_store_laravel.test/api/v1/tags?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://api_book_store_laravel.test/api/v1/tags?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://api_book_store_laravel.test/api/v1/tags&quot;,
-        &quot;per_page&quot;: 50,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    },
+    &quot;tags&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Dictionary&quot;
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Dictionary&quot;
+        }
+    ],
     &quot;message&quot;: &quot;Success to get tag collection&quot;
 }</code>
  </pre>
@@ -2404,17 +2152,51 @@ access-control-allow-origin: *
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="q"                data-endpoint="GETapi-v1-tags"
+               value="Encyclopedia"
+               data-component="query">
+    <br>
+<p>Searching keyword of the collection. Example: <code>Encyclopedia</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>pageSize</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="pageSize"                data-endpoint="GETapi-v1-tags"
+               value="10"
+               data-component="query">
+    <br>
+<p>Count of items per page. Allowed size 10, 25, 50, 100. Default 10. Example: <code>10</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="page"                data-endpoint="GETapi-v1-tags"
+               value="1"
+               data-component="query">
+    <br>
+<p>Page index to view. Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pageSize</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="pageSize"                data-endpoint="GETapi-v1-tags"
-               value="50"
+               value="10"
                data-component="body">
     <br>
-<p>Must be one of <code>10</code>, <code>25</code>, <code>50</code>, or <code>100</code>. Example: <code>50</code></p>
+<p>Count of items per page. Allowed size 10, 25, 50, 100. Default 10. Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
@@ -2422,19 +2204,19 @@ access-control-allow-origin: *
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="q"                data-endpoint="GETapi-v1-tags"
-               value="ex"
+               value="Encyclopedia"
                data-component="body">
     <br>
-<p>Example: <code>ex</code></p>
+<p>Searching keyword of the collection. Example: <code>Encyclopedia</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-v1-tags">Store a newly created resource in storage.</h2>
+                    <h2 id="tag-management-POSTapi-v1-tags">Store new tag</h2>
 
 <p>
 </p>
 
-
+<p>Store a newly created tag in database.</p>
 
 <span id="example-requests-POSTapi-v1-tags">
 <blockquote>Example request:</blockquote>
@@ -2442,18 +2224,18 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://api_book_store_laravel.test/api/v1/tags" \
+    "http://localhost:8000/api/v1/tags" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"est\"
+    \"name\": \"Magazine\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/tags"
+    "http://localhost:8000/api/v1/tags"
 );
 
 const headers = {
@@ -2462,7 +2244,7 @@ const headers = {
 };
 
 let body = {
-    "name": "est"
+    "name": "Magazine"
 };
 
 fetch(url, {
@@ -2474,7 +2256,20 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-tags">
-</span>
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;tag&quot;: {
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;Magazine&quot;
+    },
+    &quot;message&quot;: &quot;Tag has been created.&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-tags" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-tags"></span>:
@@ -2543,19 +2338,19 @@ fetch(url, {
  &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="POSTapi-v1-tags"
-               value="est"
+               value="Magazine"
                data-component="body">
     <br>
-<p>Example: <code>est</code></p>
+<p>Tag's name. Example: <code>Magazine</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-DELETEapi-v1-tags--id-">Remove the specified resource from storage.</h2>
+                    <h2 id="tag-management-DELETEapi-v1-tags--id-">Delete tag</h2>
 
 <p>
 </p>
 
-
+<p>Remove the specified tag from database.</p>
 
 <span id="example-requests-DELETEapi-v1-tags--id-">
 <blockquote>Example request:</blockquote>
@@ -2563,14 +2358,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://api_book_store_laravel.test/api/v1/tags/14" \
+    "http://localhost:8000/api/v1/tags/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://api_book_store_laravel.test/api/v1/tags/14"
+    "http://localhost:8000/api/v1/tags/1"
 );
 
 const headers = {
@@ -2586,7 +2381,20 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-tags--id-">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;tag&quot;: {
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;Magazine&quot;
+    },
+    &quot;message&quot;: &quot;Tag has been deleted.&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-tags--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-tags--id-"></span>:
@@ -2655,10 +2463,10 @@ fetch(url, {
  &nbsp;
                 <input type="number" style="display: none"
                name="id"                data-endpoint="DELETEapi-v1-tags--id-"
-               value="14"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the tag. Example: <code>14</code></p>
+<p>Tag ID. Example: <code>1</code></p>
             </div>
                     </form>
 

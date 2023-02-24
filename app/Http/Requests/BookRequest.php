@@ -40,7 +40,7 @@ class BookRequest extends FormRequest
         return [
             'author_id' => [
                 'required',
-                'numeric',
+                'integer',
                 'exists:authors,id'
             ],
             'title' => [
@@ -53,7 +53,7 @@ class BookRequest extends FormRequest
             ],
             'price' => [
                 'required',
-                'numeric',
+                'double',
                 new LimitBookPriceRule()
             ],
             'release_date' => [
@@ -73,7 +73,7 @@ class BookRequest extends FormRequest
                 'array'
             ],
             'tag_ids.*' => [
-                'numeric',
+                'integer',
                 'exists:tags,id'
             ]
         ];

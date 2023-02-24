@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 class TagResource extends JsonResource
 {
+    public static $wrap = 'tag';
     private string $message;
 
     /**
